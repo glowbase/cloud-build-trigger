@@ -1,0 +1,518 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '--no-cache'
+      - '-t'
+      - 'production-backend-api:$COMMIT_SHA'
+      - .
+      - '-f'
+      - Dockerfile
+    id: 'Build Docker Container'
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+    id: 'Push Image to Container Registry'
+
+  # ----------------------------------------------------------------------------------------
+  # asia-east1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-asia-east1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=asia-east1'
+      - '--quiet'
+    id: 'Deploy asia-east1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # asia-east2
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-asia-east2
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=asia-east2'
+      - '--quiet'
+    id: 'Deploy asia-east2'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # asia-northeast1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-asia-northeast1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=asia-northeast1'
+      - '--quiet'
+    id: 'Deploy asia-northeast1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # asia-northeast2
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-asia-northeast2
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=asia-northeast2'
+      - '--quiet'
+    id: 'Deploy asia-northeast2'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # asia-northeast3
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-asia-northeast3
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=asia-northeast3'
+      - '--quiet'
+    id: 'Deploy asia-northeast3'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # asia-south1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-asia-south1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=asia-south1'
+      - '--quiet'
+    id: 'Deploy asia-south1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # asia-south2
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-asia-south2
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=asia-south2'
+      - '--quiet'
+    id: 'Deploy asia-south2'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # asia-southeast1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-asia-southeast1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=asia-southeast1'
+      - '--quiet'
+    id: 'Deploy asia-southeast1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # asia-southeast2
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-asia-southeast2
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=asia-southeast2'
+      - '--quiet'
+    id: 'Deploy asia-southeast2'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # australia-southeast1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-australia-southeast1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=australia-southeast1'
+      - '--quiet'
+    id: 'Deploy australia-southeast1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # australia-southeast2
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-australia-southeast2
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=australia-southeast2'
+      - '--quiet'
+    id: 'Deploy australia-southeast2'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # europe-central2
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-europe-central2
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=europe-central2'
+      - '--quiet'
+    id: 'Deploy europe-central2'
+    entrypoint: gcloud
+  
+  # ----------------------------------------------------------------------------------------
+  # europe-north1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-europe-north1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=europe-north1'
+      - '--quiet'
+    id: 'Deploy europe-north1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # europe-west1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-europe-west1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=europe-west1'
+      - '--quiet'
+    id: 'Deploy europe-west1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # europe-west2
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-europe-west2
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=europe-west2'
+      - '--quiet'
+    id: 'Deploy europe-west2'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # europe-west3
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-europe-west3
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=europe-west3'
+      - '--quiet'
+    id: 'Deploy europe-west3'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # europe-west4
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-europe-west4
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=europe-west4'
+      - '--quiet'
+    id: 'Deploy europe-west4'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # europe-west6
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-europe-west6
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=europe-west6'
+      - '--quiet'
+    id: 'Deploy europe-west6'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # northamerica-northeast1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-northamerica-northeast1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=northamerica-northeast1'
+      - '--quiet'
+    id: 'Deploy northamerica-northeast1'
+    entrypoint: gcloud
+  
+  # ----------------------------------------------------------------------------------------
+  # northamerica-northeast2
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-northamerica-northeast2
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=northamerica-northeast2'
+      - '--quiet'
+    id: 'Deploy northamerica-northeast2'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # southamerica-west1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-southamerica-west1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=southamerica-west1'
+      - '--quiet'
+    id: 'Deploy southamerica-west1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # southamerica-east1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-southamerica-east1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=southamerica-east1'
+      - '--quiet'
+    id: 'Deploy southamerica-east1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # us-east1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-us-east1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=us-east1'
+      - '--quiet'
+    id: 'Deploy us-east1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # us-east4
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-us-east4
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=us-east4'
+      - '--quiet'
+    id: 'Deploy us-east4'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # us-west1
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-us-west1
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=us-west1'
+      - '--quiet'
+    id: 'Deploy us-west1'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # us-west2
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-us-west2
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=us-west2'
+      - '--quiet'
+    id: 'Deploy us-west2'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # us-west3
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-us-west3
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=us-west3'
+      - '--quiet'
+    id: 'Deploy us-west3'
+    entrypoint: gcloud
+
+  # ----------------------------------------------------------------------------------------
+  # us-west4
+  # ----------------------------------------------------------------------------------------
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - production-backend-api-us-west4
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+      - '--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS'
+      - '--region=us-west4'
+      - '--quiet'
+    id: 'Deploy us-west4'
+    entrypoint: gcloud
+images:
+  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/production-backend-api:$COMMIT_SHA'
+  
+options:
+  substitutionOption: ALLOW_LOOSE
+  machineType: 'E2_HIGHCPU_8'
+  env:
+    - 'PROJECT_ID=$PROJECT_ID' # ID of Cloud Project
+    - 'BUILD_ID=$BUILD_ID' # ID of build
+    - 'PROJECT_NUMBER=$PROJECT_NUMBER' # Project number
+    - 'TRIGGER_NAME=$TRIGGER_NAME' # Name associated with Cloud Build trigger
+    - 'COMMIT_SHA=$COMMIT_SHA' # Commit ID associated with build
+    - 'SHORT_SHA=$SHORT_SHA' # First 7 characters from COMMIT_SHA
+    - 'REVISION_ID=$REVISION_ID' # Commit ID associated with build
+    - 'REPO_NAME=$REPO_NAME' # Name of repository
+    - 'BRANCH_NAME=$BRANCH_NAME' # Name of branch
+    - 'TAG_NAME=$TAG_NAME' # Name of tag
+    - 'TRIGGER_BUILD_CONFIG_PATH=$TRIGGER_BUILD_CONFIG_PATH' # Path to Cloud Build configurati
+    - 'HEAD_BRANCH=$_HEAD_BRANCH' # Head branch of the pull request
+    - 'BASE_BRANCH=$_BASE_BRANCH' # Base branch of the pull request
+    - 'HEAD_REPO_URL=$_HEAD_REPO' # URL of the head repo of the pull request
+    - 'PR_NUMBER=$_PR_NUMBER' # Number of the pull request
+    - 'DEPLOY_REGION=$_DEPLOY_REGION'
+    - 'SERVICE_NAME=production-backend-api'
+
+timeout: 1200s
